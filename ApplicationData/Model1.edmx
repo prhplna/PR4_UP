@@ -1,0 +1,270 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище Hotel_UP4Model" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Booking">
+          <Key>
+            <PropertyRef Name="IdBooking" />
+          </Key>
+          <Property Name="IdBooking" Type="int" Nullable="false" />
+          <Property Name="IDGuests" Type="int" Nullable="false" />
+          <Property Name="PhoneGuest" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="DateOfArrival" Type="date" Nullable="false" />
+          <Property Name="ExpiryDate" Type="date" Nullable="false" />
+          <Property Name="Category" Type="nchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ExtraServices">
+          <Key>
+            <PropertyRef Name="IDServices" />
+          </Key>
+          <Property Name="IDServices" Type="int" Nullable="false" />
+          <Property Name="Services" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="DescriptionServices" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="PriceServices" Type="money" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Guests">
+          <Key>
+            <PropertyRef Name="IDGuests" />
+          </Key>
+          <Property Name="IDGuests" Type="int" Nullable="false" />
+          <Property Name="LastNameGuest" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="NameGuest" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="MiddleNameGuest" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="PhoneNumber" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="DateOfBirth" Type="date" Nullable="false" />
+          <Property Name="PlaceOfBirth" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="PassportSeries" Type="int" Nullable="false" />
+          <Property Name="PassportNumber" Type="int" Nullable="false" />
+          <Property Name="WhenIssued" Type="date" Nullable="false" />
+          <Property Name="IssuedbyWhom" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Registration" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <!--Ошибки, обнаруженные при создании:
+предупреждение 6013: Первичный ключ в таблице или представлении "Hotel_UP4.dbo.NumberOfRooms" не определен, его не удалось вывести. Эта таблица или представление исключены. Чтобы использовать сущность, необходимо проверить схему, добавить правильные ключи и раскомментировать ее.
+        <EntityType Name="NumberOfRooms">
+          <Property Name="Этаж" Type="nvarchar" MaxLength="255" />
+          <Property Name="Номер" Type="nvarchar" MaxLength="255" />
+          <Property Name="Категория" Type="nvarchar" MaxLength="255" />
+          <Property Name="F4" Type="nvarchar" MaxLength="255" />
+        </EntityType>-->
+        <EntityType Name="Price">
+          <Key>
+            <PropertyRef Name="IdPrice" />
+          </Key>
+          <Property Name="IdPrice" Type="int" Nullable="false" />
+          <Property Name="IdNumberOfRooms" Type="int" Nullable="false" />
+          <Property Name="Price" Type="money" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="IdRole" />
+          </Key>
+          <Property Name="IdRole" Type="int" Nullable="false" />
+          <Property Name="Role" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="IdUser" />
+          </Key>
+          <Property Name="IdUser" Type="int" Nullable="false" />
+          <Property Name="Login" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="MiddleName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="IdRole" Type="int" Nullable="false" />
+          <Property Name="Block" Type="bit" />
+        </EntityType>
+        <EntityContainer Name="Хранилище Hotel_UP4ModelContainer">
+          <EntitySet Name="Booking" EntityType="Self.Booking" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ExtraServices" EntityType="Self.ExtraServices" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Guests" EntityType="Self.Guests" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Price" EntityType="Self.Price" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Hotel_UP4Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Booking">
+          <Key>
+            <PropertyRef Name="IdBooking" />
+          </Key>
+          <Property Name="IdBooking" Type="Int32" Nullable="false" />
+          <Property Name="IDGuests" Type="Int32" Nullable="false" />
+          <Property Name="PhoneGuest" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DateOfArrival" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="ExpiryDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Category" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ExtraServices">
+          <Key>
+            <PropertyRef Name="IDServices" />
+          </Key>
+          <Property Name="IDServices" Type="Int32" Nullable="false" />
+          <Property Name="Services" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DescriptionServices" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PriceServices" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Guests">
+          <Key>
+            <PropertyRef Name="IDGuests" />
+          </Key>
+          <Property Name="IDGuests" Type="Int32" Nullable="false" />
+          <Property Name="LastNameGuest" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="NameGuest" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MiddleNameGuest" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DateOfBirth" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="PlaceOfBirth" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PassportSeries" Type="Int32" Nullable="false" />
+          <Property Name="PassportNumber" Type="Int32" Nullable="false" />
+          <Property Name="WhenIssued" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="IssuedbyWhom" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Registration" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Price">
+          <Key>
+            <PropertyRef Name="IdPrice" />
+          </Key>
+          <Property Name="IdPrice" Type="Int32" Nullable="false" />
+          <Property Name="IdNumberOfRooms" Type="Int32" Nullable="false" />
+          <Property Name="Price1" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="IdRole" />
+          </Key>
+          <Property Name="IdRole" Type="Int32" Nullable="false" />
+          <Property Name="Role1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="IdUser" />
+          </Key>
+          <Property Name="IdUser" Type="Int32" Nullable="false" />
+          <Property Name="Login" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MiddleName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IdRole" Type="Int32" Nullable="false" />
+          <Property Name="Block" Type="Boolean" />
+        </EntityType>
+        <EntityContainer Name="Hotel_UP4Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Booking" EntityType="Self.Booking" />
+          <EntitySet Name="ExtraServices" EntityType="Self.ExtraServices" />
+          <EntitySet Name="Guests" EntityType="Self.Guests" />
+          <EntitySet Name="Price" EntityType="Self.Price" />
+          <EntitySet Name="Role" EntityType="Self.Role" />
+          <EntitySet Name="Users" EntityType="Self.Users" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище Hotel_UP4ModelContainer" CdmEntityContainer="Hotel_UP4Entities">
+          <EntitySetMapping Name="Booking">
+            <EntityTypeMapping TypeName="Hotel_UP4Model.Booking">
+              <MappingFragment StoreEntitySet="Booking">
+                <ScalarProperty Name="IdBooking" ColumnName="IdBooking" />
+                <ScalarProperty Name="IDGuests" ColumnName="IDGuests" />
+                <ScalarProperty Name="PhoneGuest" ColumnName="PhoneGuest" />
+                <ScalarProperty Name="DateOfArrival" ColumnName="DateOfArrival" />
+                <ScalarProperty Name="ExpiryDate" ColumnName="ExpiryDate" />
+                <ScalarProperty Name="Category" ColumnName="Category" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ExtraServices">
+            <EntityTypeMapping TypeName="Hotel_UP4Model.ExtraServices">
+              <MappingFragment StoreEntitySet="ExtraServices">
+                <ScalarProperty Name="IDServices" ColumnName="IDServices" />
+                <ScalarProperty Name="Services" ColumnName="Services" />
+                <ScalarProperty Name="DescriptionServices" ColumnName="DescriptionServices" />
+                <ScalarProperty Name="PriceServices" ColumnName="PriceServices" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Guests">
+            <EntityTypeMapping TypeName="Hotel_UP4Model.Guests">
+              <MappingFragment StoreEntitySet="Guests">
+                <ScalarProperty Name="IDGuests" ColumnName="IDGuests" />
+                <ScalarProperty Name="LastNameGuest" ColumnName="LastNameGuest" />
+                <ScalarProperty Name="NameGuest" ColumnName="NameGuest" />
+                <ScalarProperty Name="MiddleNameGuest" ColumnName="MiddleNameGuest" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
+                <ScalarProperty Name="PlaceOfBirth" ColumnName="PlaceOfBirth" />
+                <ScalarProperty Name="PassportSeries" ColumnName="PassportSeries" />
+                <ScalarProperty Name="PassportNumber" ColumnName="PassportNumber" />
+                <ScalarProperty Name="WhenIssued" ColumnName="WhenIssued" />
+                <ScalarProperty Name="IssuedbyWhom" ColumnName="IssuedbyWhom" />
+                <ScalarProperty Name="Registration" ColumnName="Registration" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Price">
+            <EntityTypeMapping TypeName="Hotel_UP4Model.Price">
+              <MappingFragment StoreEntitySet="Price">
+                <ScalarProperty Name="IdPrice" ColumnName="IdPrice" />
+                <ScalarProperty Name="IdNumberOfRooms" ColumnName="IdNumberOfRooms" />
+                <ScalarProperty Name="Price1" ColumnName="Price" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Role">
+            <EntityTypeMapping TypeName="Hotel_UP4Model.Role">
+              <MappingFragment StoreEntitySet="Role">
+                <ScalarProperty Name="IdRole" ColumnName="IdRole" />
+                <ScalarProperty Name="Role1" ColumnName="Role" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="Hotel_UP4Model.Users">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="IdUser" ColumnName="IdUser" />
+                <ScalarProperty Name="Login" ColumnName="Login" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+                <ScalarProperty Name="IdRole" ColumnName="IdRole" />
+                <ScalarProperty Name="Block" ColumnName="Block" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
